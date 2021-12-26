@@ -44,28 +44,18 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            pinned: false,
-            floating: false,
-            title: Center(child: Text("Map")),
-            expandedHeight: 150.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text("Map"),
-              centerTitle: true,
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                const Text(
-                  "Sliver",
-                  style: TextStyle(fontSize: 600),
-                ),
-              ],
-            ),
-          ),
+      appBar: AppBar(
+        title: const Text("Expandable widget"),
+        centerTitle: true,
+      ),
+      body: const ExpansionTile(
+        title: Text("See More"),
+        leading: Icon(Icons.info),
+        backgroundColor: Colors.black12,
+        children: [
+          ListTile(title: Text("First")),
+          ListTile(title: Text("Second")),
+          ListTile(title: Text("Third")),
         ],
       ),
     );
