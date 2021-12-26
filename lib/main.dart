@@ -41,6 +41,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,44 +49,17 @@ class _MainPageState extends State<MainPage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: SizedBox(
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => PageRoute(key: widget.key),
-              ),
-            );
-          },
-          child: Hero(
-            tag: "tag",
-            child: ClipRect(
-              child: Image.network(
-                "https://i.pinimg.com/236x/58/70/6f/58706fbb9c604512a9555134200205d8.jpg",
-                width: 200,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class PageRoute extends StatelessWidget {
-  @override
-  const PageRoute({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Hero(
-        tag: 'tag',
-        child: Image.network(
-            'https://i.pinimg.com/236x/58/70/6f/58706fbb9c604512a9555134200205d8.jpg'),
+      body: Center(
+        child: ChoiceChip(
+            avatar: Image.network(
+                "https://i.pinimg.com/736x/cc/7f/07/cc7f078eaba09f2f7d4e87a727b31c70.jpg"),
+            label: const Text("Choice chip"),
+            selected: _isSelected,
+            onSelected: (newBoolValue) {
+              setState(() {
+                _isSelected = newBoolValue;
+              });
+            }),
       ),
     );
   }
