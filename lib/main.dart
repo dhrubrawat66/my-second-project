@@ -48,8 +48,44 @@ class _MainPageState extends State<MainPage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text("Hello"),
+      body: SizedBox(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PageRoute(key: widget.key),
+              ),
+            );
+          },
+          child: Hero(
+            tag: "tag",
+            child: ClipRect(
+              child: Image.network(
+                "https://i.pinimg.com/236x/58/70/6f/58706fbb9c604512a9555134200205d8.jpg",
+                width: 200,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PageRoute extends StatelessWidget {
+  @override
+  const PageRoute({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Hero(
+        tag: 'tag',
+        child: Image.network(
+            'https://i.pinimg.com/236x/58/70/6f/58706fbb9c604512a9555134200205d8.jpg'),
       ),
     );
   }
