@@ -41,25 +41,32 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: ChoiceChip(
-            avatar: Image.network(
-                "https://i.pinimg.com/736x/cc/7f/07/cc7f078eaba09f2f7d4e87a727b31c70.jpg"),
-            label: const Text("Choice chip"),
-            selected: _isSelected,
-            onSelected: (newBoolValue) {
-              setState(() {
-                _isSelected = newBoolValue;
-              });
-            }),
+      body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            pinned: false,
+            floating: false,
+            title: Center(child: Text("Map")),
+            expandedHeight: 150.0,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text("Map"),
+              centerTitle: true,
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                const Text(
+                  "Sliver",
+                  style: TextStyle(fontSize: 600),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
